@@ -12,6 +12,11 @@ public class PaddleController : NetworkBehaviour {
 
     private Vector3 paddlePos;
     // Use this for initialization
+    void Awake()
+    {
+      
+    }
+
     void Start () {
         rb = paddle.GetComponent<Rigidbody>();
         if (isServer)
