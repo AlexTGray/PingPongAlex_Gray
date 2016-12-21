@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour {
     public Text p1ScoreText;
     public Text p2Scoretext;
     public Transform BallObject;
-    
+    private PowerUp PU;
 
     Rigidbody rb;
     int p1Score;
@@ -55,6 +55,13 @@ public class Ball : MonoBehaviour {
         rb.velocity = velo;
         isMoving = false;
         gameObject.transform.position = new Vector3(2, 0, 0);
+    }
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "GrowPower")
+        {
+            PU = GetComponent<PowerUp>();
+        }
     }
     void OnCollisionEnter(Collision coll)
     {

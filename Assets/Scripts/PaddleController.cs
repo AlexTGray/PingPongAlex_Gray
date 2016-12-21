@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 public class PaddleController : NetworkBehaviour {
     public GameObject paddle;
     public Transform p1;
+    bool isP1;
+    bool isP2;
     public Transform p2;
     Rigidbody rb;
 
@@ -25,10 +27,13 @@ public class PaddleController : NetworkBehaviour {
             if (!isClient)
             {
                 GameObject.Find("Main Camera").gameObject.transform.parent = p1.transform;
+                isP1 = true;
             }
             else if (isClient)
             {
                 GameObject.Find("Main Camera").gameObject.transform.parent = p2.transform;
+                isP1 = false;
+                isP2 = true;
             }
             
         }

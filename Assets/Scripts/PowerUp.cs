@@ -29,7 +29,7 @@ public class PowerUp : MonoBehaviour {
     }
     public void GrowReset(GameObject paddle)
     {
-        
+        paddle.transform.localScale -= new Vector3(1, 1, 0);
 
     }
     void ShrinkReset(GameObject paddle)
