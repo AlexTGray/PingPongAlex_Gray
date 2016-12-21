@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
     [SerializeField]
     float forceValue = 4.5f;
 
+    public Text p1ScoreText;
+    public Text p2Scoretext;
     public Transform BallObject;
     
 
     Rigidbody rb;
+    int p1Score;
+    int p2Score;
     bool isMoving = false;
     private Vector3 velo;
     // Use this for initialization
@@ -64,7 +69,19 @@ public class Ball : MonoBehaviour {
 
         else if (coll.collider.CompareTag("ScoreZone"))
         {
-            Debug.Log("Score");
+            if (BallObject.transform.position.z >= 0)
+            {
+                p1Score += 1;
+                Debug.Log("P1 Scores: "+ p1Score);
+                p1ScoreText.text = ("P1 Score: " + p1Score.ToString());
+            }
+            
+            else
+            {
+                p2Score += 1;
+                Debug.Log("P2 Scores: "+ p2Score);
+                p2Scoretext.text = ("P2 Score: " + p2Score.ToString());
+            }
             ResetBall();
         }
     }

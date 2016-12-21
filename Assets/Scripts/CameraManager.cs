@@ -5,28 +5,29 @@ using UnityEngine.Networking;
 public class CameraManager : NetworkBehaviour {
     public Camera p1;
     public Camera p2;
-
     // Use this for initialization
     void Start()
     {
-        if(isLocalPlayer)
+        p1.enabled = false;
+        p2.enabled = false;
+
+
+    }
+    public override void OnStartLocalPlayer()
+    {
+        if (isServer)
         {
-            if (isClient)
-            {
-                p1.enabled = false;
-                p2.enabled = true;
-            }
-            else
-            {
-                p1.enabled = true;
-                p2.enabled = false;
-            }
+            p1.enabled = true;
+            Debug.Log("P1 Status: " + p1.enabled);
         }
+        else if (isClient)
+        {
+            p2.enabled = true;
+            Debug.Log("Fucker");
+        }
+    }
+        // Update is called once per frame
+	void Update () {
         
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

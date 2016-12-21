@@ -4,6 +4,8 @@ using UnityEngine.Networking;
 
 public class PaddleController : NetworkBehaviour {
     public GameObject paddle;
+    public Transform p1;
+    public Transform p2;
     Rigidbody rb;
 
     float horizontalMove;
@@ -18,6 +20,18 @@ public class PaddleController : NetworkBehaviour {
     }
 
     void Start () {
+        if (isLocalPlayer)
+        {
+            if (!isClient)
+            {
+                GameObject.Find("Main Camera").gameObject.transform.parent = p1.transform;
+            }
+            else if (isClient)
+            {
+                GameObject.Find("Main Camera").gameObject.transform.parent = p2.transform;
+            }
+            
+        }
         rb = paddle.GetComponent<Rigidbody>();
         if (isServer)
         {

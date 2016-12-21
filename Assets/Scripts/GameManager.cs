@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
+    public GameObject GrowPower, ShrinkPower, SpeedBall;
     
 	// Use this for initialization
 	void Awake () {
